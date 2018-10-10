@@ -128,6 +128,11 @@ class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener
         }
     }
 
+    override fun onDestroy() {
+        presenter.clearDisposable()
+        super.onDestroy()
+    }
+
     companion object {
         private val TAG = SignInActivity::class.java.simpleName
         private const val RC_SIGN_IN = 9001

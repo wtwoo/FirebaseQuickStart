@@ -1,11 +1,7 @@
-package com.wtwoo.girlsinger.worldcup.util;
+package com.woopark.firebasequickstart.util
 
 import android.os.SystemClock
 import io.reactivex.Observable
-
-/**
- * Created by wtwoo on 2017-02-17.
- */
 
 object SleepObservable {
     fun sleepIfBeforeTargetTime(targetTime: Long): Observable<String> {
