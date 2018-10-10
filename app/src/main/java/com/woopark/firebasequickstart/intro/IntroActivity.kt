@@ -1,12 +1,11 @@
 package com.woopark.firebasequickstart.intro
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.woopark.firebasequickstart.R
 import com.woopark.firebasequickstart.util.ActivityUtils
-import com.woopark.firebasequickstart.util.Log
 import com.woopark.firebasequickstart.util.SleepObservable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

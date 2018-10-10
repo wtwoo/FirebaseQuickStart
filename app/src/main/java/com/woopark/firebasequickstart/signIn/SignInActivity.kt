@@ -2,7 +2,6 @@ package com.woopark.firebasequickstart.signIn
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.util.Log
 import android.view.View
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -16,7 +15,6 @@ import com.google.firebase.auth.GoogleAuthProvider
 import com.woopark.firebasequickstart.R
 import com.woopark.firebasequickstart.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
-
 
 class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener {
     private lateinit var mAuth: FirebaseAuth
