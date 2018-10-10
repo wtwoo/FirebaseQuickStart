@@ -41,7 +41,7 @@ class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
         mAuth = FirebaseAuth.getInstance()
 
-        presenter = SignInPresenter().apply {
+        presenter = SignInPresenter(this).apply {
             start()
         }
     }
@@ -73,27 +73,8 @@ class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
-        showProgressDialog()
-
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "signInWithCredential:success")
-                        val user = mAuth.currentUser
-                        updateUI(user)
-                    } else {
-                        // If sign in fails, display a message to the user.
-                        Log.w(TAG, "signInWithCredential:failure", task.exception)
-                        Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
-                        updateUI(null)
-                    }
-
-                    // [START_EXCLUDE]
-                    hideProgressDialog()
-                    // [END_EXCLUDE]
-                }
+        presenter.firebaseAuthWith(credential)
     }
 
     private fun signIn() {
@@ -124,7 +105,6 @@ class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener
     }
 
     override fun updateUI(user: FirebaseUser?) {
-        hideProgressDialog()
         if (user != null) {
             status.text = getString(R.string.google_status_fmt, user.email)
             detail.text = getString(R.string.firebase_status_fmt, user.uid)
@@ -141,8 +121,7 @@ class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener
     }
 
     override fun onClick(v: View) {
-        val i = v.id
-        when (i) {
+        when (v.id) {
             R.id.signInButton -> signIn()
             R.id.signOutButton -> signOut()
             R.id.disconnectButton -> revokeAccess()
@@ -151,6 +130,6 @@ class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener
 
     companion object {
         private val TAG = SignInActivity::class.java.simpleName
-        private val RC_SIGN_IN = 9001
+        private const val RC_SIGN_IN = 9001
     }
 }

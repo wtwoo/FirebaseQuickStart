@@ -1,10 +1,9 @@
 package com.woopark.firebasequickstart.signIn
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 import com.woopark.firebasequickstart.base.BasePresenter
 import com.woopark.firebasequickstart.base.BaseView
-
 
 interface SignInContract {
 
@@ -13,6 +12,6 @@ interface SignInContract {
     }
 
     interface Presenter : BasePresenter {
-        fun firebaseAuthWith(acct: GoogleSignInAccount)
+        fun firebaseAuthWith(authCredential : AuthCredential)
     }
 }
