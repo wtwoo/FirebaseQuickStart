@@ -1,4 +1,4 @@
-package com.woopark.firebasequickstart
+package com.woopark.firebasequickstart.signIn
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,55 +13,47 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.woopark.firebasequickstart.R
 import com.woopark.firebasequickstart.base.BaseActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_sign_in.*
 
-class MainActivity : BaseActivity(), View.OnClickListener {
-    // [START declare_auth]
+
+class SignInActivity : BaseActivity(), SignInContract.View, View.OnClickListener {
     private lateinit var mAuth: FirebaseAuth
-    // [END declare_auth]
-
     private lateinit var mGoogleSignInClient: GoogleSignInClient
+
+    private lateinit var presenter: SignInContract.Presenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_sign_in)
 
         // Button listeners
         signInButton.setOnClickListener(this)
         signOutButton.setOnClickListener(this)
         disconnectButton.setOnClickListener(this)
 
-        // [START config_signin]
-        // Configure Google Sign In
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
-        // [END config_signin]
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
-        // [START initialize_auth]
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance()
-        // [END initialize_auth]
+
+        presenter = SignInPresenter().apply {
+            start()
+        }
     }
 
-    // [START on_start_check_user]
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth.currentUser
         updateUI(currentUser)
     }
-    // [END on_start_check_user]
 
-    // [START onactivityresult]
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
@@ -78,14 +70,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         }
     }
-    // [END onactivityresult]
 
-    // [START auth_with_google]
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
-        // [START_EXCLUDE silent]
         showProgressDialog()
-        // [END_EXCLUDE]
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         mAuth.signInWithCredential(credential)
@@ -107,22 +95,21 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                     // [END_EXCLUDE]
                 }
     }
-    // [END auth_with_google]
 
-    // [START signin]
     private fun signIn() {
         val signInIntent = mGoogleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
-    // [END signin]
+
 
     private fun signOut() {
-        // Firebase sign out
         mAuth.signOut()
 
         // Google sign out
-        mGoogleSignInClient.signOut().addOnCompleteListener(this
-        ) { updateUI(null) }
+        mGoogleSignInClient.signOut().addOnCompleteListener(this) {
+            updateUI(null)
+        }
+
     }
 
     private fun revokeAccess() {
@@ -130,11 +117,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         mAuth.signOut()
 
         // Google revoke access
-        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this
-        ) { updateUI(null) }
+        mGoogleSignInClient.revokeAccess().addOnCompleteListener(this) {
+            updateUI(null)
+        }
+
     }
 
-    private fun updateUI(user: FirebaseUser?) {
+    override fun updateUI(user: FirebaseUser?) {
         hideProgressDialog()
         if (user != null) {
             status.text = getString(R.string.google_status_fmt, user.email)
@@ -161,7 +150,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     }
 
     companion object {
-        private val TAG = MainActivity::class.java.simpleName
+        private val TAG = SignInActivity::class.java.simpleName
         private val RC_SIGN_IN = 9001
     }
 }
