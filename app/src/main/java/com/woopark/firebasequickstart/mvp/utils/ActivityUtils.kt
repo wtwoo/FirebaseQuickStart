@@ -1,8 +1,8 @@
-package com.woopark.firebasequickstart.util
+package com.woopark.firebasequickstart.mvp.utils
 
 import android.app.Activity
 import android.content.Intent
-import com.woopark.firebasequickstart.signIn.SignInActivity
+import com.woopark.firebasequickstart.mvp.ui.signIn.SignInActivity
 
 class ActivityUtils {
     companion object {

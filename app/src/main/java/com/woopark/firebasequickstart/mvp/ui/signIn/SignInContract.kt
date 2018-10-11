@@ -1,9 +1,9 @@
-package com.woopark.firebasequickstart.signIn
+package com.woopark.firebasequickstart.mvp.ui.signIn
 
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
-import com.woopark.firebasequickstart.base.BasePresenter
-import com.woopark.firebasequickstart.base.BaseView
+import com.woopark.firebasequickstart.mvp.ui.base.BasePresenter
+import com.woopark.firebasequickstart.mvp.ui.base.BaseView
 
 interface SignInContract {
 

@@ -1,4 +1,4 @@
-package com.woopark.firebasequickstart.base
+package com.woopark.firebasequickstart.mvp.ui.base
 
 interface BasePresenter {
     fun start()

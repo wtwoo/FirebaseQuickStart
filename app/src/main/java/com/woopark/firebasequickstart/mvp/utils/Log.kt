@@ -1,4 +1,4 @@
-package com.woopark.firebasequickstart.util
+package com.woopark.firebasequickstart.mvp.utils
 
 import com.woopark.firebasequickstart.BuildConfig
 

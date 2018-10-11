@@ -1,4 +1,4 @@
-package com.woopark.firebasequickstart.signIn
+package com.woopark.firebasequickstart.mvp.ui.signIn
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.woopark.firebasequickstart.R
-import com.woopark.firebasequickstart.base.BaseActivity
+import com.woopark.firebasequickstart.mvp.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : BaseActivity(), SignInContract.View {
