@@ -13,5 +13,8 @@ interface SignInContract {
 
     interface Presenter : BasePresenter {
         fun firebaseAuthWith(authCredential : AuthCredential)
+        fun signIn()
+        fun signOut()
+        fun revokeAccess()
     }
 }
