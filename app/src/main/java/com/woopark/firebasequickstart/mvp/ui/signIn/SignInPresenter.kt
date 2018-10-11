@@ -1,4 +1,4 @@
-package com.woopark.firebasequickstart.signIn
+package com.woopark.firebasequickstart.mvp.ui.signIn
 
 import android.app.Activity
 import android.widget.Toast

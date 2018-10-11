@@ -1,7 +1,8 @@
-package com.woopark.firebasequickstart
+package com.woopark.firebasequickstart.mvp.ui.main
 
 import android.os.Bundle
-import com.woopark.firebasequickstart.base.BaseActivity
+import com.woopark.firebasequickstart.R
+import com.woopark.firebasequickstart.mvp.ui.base.BaseActivity
 
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
