@@ -1,4 +1,4 @@
-package com.woopark.firebasequickstart.base
+package com.woopark.firebasequickstart.mvp.ui.base
 
 import android.app.ProgressDialog
 import android.content.Context

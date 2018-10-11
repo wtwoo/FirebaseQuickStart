@@ -1,4 +1,4 @@
-package com.woopark.firebasequickstart.util
+package com.woopark.firebasequickstart.mvp.utils
 
 import android.os.SystemClock
 import io.reactivex.Observable

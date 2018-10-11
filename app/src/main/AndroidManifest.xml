@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".intro.IntroActivity"
+        <activity android:name=".mvp.ui.intro.IntroActivity"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
@@ -22,8 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".signIn.SignInActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.woopark.firebasequickstart.mvp.ui.signIn.SignInActivity" />
+        <activity android:name=".mvp.ui.main.MainActivity" />
     </application>
 
 </manifest>
