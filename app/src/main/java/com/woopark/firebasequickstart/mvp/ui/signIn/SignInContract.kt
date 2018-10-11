@@ -1,5 +1,6 @@
 package com.woopark.firebasequickstart.mvp.ui.signIn
 
+import com.facebook.AccessToken
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 import com.woopark.firebasequickstart.mvp.ui.base.BasePresenter
@@ -9,6 +10,7 @@ interface SignInContract {
 
     interface View : BaseView<Presenter> {
         fun updateUI(user: FirebaseUser?)
+        fun handleFacebookAccessToken(token: AccessToken)
     }
 
     interface Presenter : BasePresenter {
