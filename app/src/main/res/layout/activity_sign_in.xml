@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_100"
-    android:orientation="vertical"
-    android:weightSum="5">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,7 +86,6 @@
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
         </LinearLayout>
     </RelativeLayout>
-
 
     <RelativeLayout
         android:layout_width="match_parent"
