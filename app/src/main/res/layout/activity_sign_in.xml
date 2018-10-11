@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey_100"
-    android:orientation="vertical"
-    android:weightSum="4">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,5 +85,29 @@
                 android:text="@string/disconnect"
                 android:theme="@style/ThemeOverlay.MyDarkButton" />
         </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/grey_300">
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/buttonFacebookLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true" />
+
+        <Button
+            android:id="@+id/buttonFacebookSignout"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/sign_out"
+            android:theme="@style/ThemeOverlay.MyDarkButton"
+            android:visibility="gone" />
+
     </RelativeLayout>
 </LinearLayout>
