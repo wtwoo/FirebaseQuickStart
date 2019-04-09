@@ -17,11 +17,12 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.woopark.firebasequickstart.R
 import com.woopark.firebasequickstart.mvp.ui.base.BaseActivity
+import com.woopark.firebasequickstart.mvp.utils.ActivityUtils
 import com.woopark.firebasequickstart.mvp.utils.Log
 import kotlinx.android.synthetic.main.activity_sign_in.*
 
 class SignInActivity : BaseActivity(), SignInContract.View {
-    private lateinit var presenter: SignInContract.Presenter
+    override lateinit var presenter: SignInContract.Presenter
     private lateinit var mCallbackManager: CallbackManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,10 +99,9 @@ class SignInActivity : BaseActivity(), SignInContract.View {
         if (user != null) {
             status.text = getString(R.string.google_status_fmt, user.email)
             detail.text = getString(R.string.firebase_status_fmt, user.uid)
-
-            signInButton.visibility = View.GONE
-            signOutAndDisconnect.visibility = View.VISIBLE
-
+            ActivityUtils.startMainActivity(this)
+            //signInButton.visibility = View.GONE
+            //signOutAndDisconnect.visibility = View.VISIBLE
         } else {
             status.setText(R.string.signed_out)
             detail.text = null

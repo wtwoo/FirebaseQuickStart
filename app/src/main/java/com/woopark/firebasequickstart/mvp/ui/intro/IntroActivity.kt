@@ -6,7 +6,7 @@ import com.woopark.firebasequickstart.mvp.ui.base.BaseActivity
 
 class IntroActivity : BaseActivity(), IntroContract.View {
 
-    private lateinit var presenter: IntroContract.Presenter
+    override lateinit var presenter: IntroContract.Presenter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_intro)
